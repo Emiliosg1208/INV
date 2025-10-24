@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invitación al Cine 🍿</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      width: 100vw;
+      aspect-ratio: 9 / 16;
+      background: linear-gradient(to bottom, #0d0d0d, #1c1c1c);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Pantalla inicial */
+    .pantalla {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at center, #1a1a1a 10%, #000 100%);
+      transition: opacity 0.8s ease;
+      z-index: 10;
+    }
+
+    .pantalla h2 {
+      font-size: 1.8rem;
+      margin-bottom: 2rem;
+      color: #ffdd57;
+      text-shadow: 0 0 10px #ffae00;
+    }
+
+    .opciones {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .btn-op {
+      background: #ff4500;
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 0 15px #ff4500;
+      transition: 0.3s;
+    }
+
+    .btn-op:hover {
+      background: #ff6347;
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #ff6347;
+    }
+
+    /* Fondo de invitación */
+    .bg {
+      position: absolute;
+      inset: 0;
+      background: url("https://cdn.myanimelist.net/images/anime/1806/126216.jpg") center/cover no-repeat;
+      opacity: 0.25;
+      z-index: 0;
+    }
+
+    .invitacion {
+      opacity: 0;
+      transition: opacity 1s ease;
+      z-index: 1;
+    }
+
+    .invitacion.mostrar {
+      opacity: 1;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #ff4500;
+      text-shadow: 0 0 10px #ff0000;
+      z-index: 2;
+    }
+
+    p {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      z-index: 2;
+    }
+
+    .hora-lugar {
+      margin-top: 0.5rem;
+      font-size: 1rem;
+      color: #ffd166;
+      font-weight: 500;
+      z-index: 2;
+    }
+
+    .btn {
+      margin-top: 2rem;
+      padding: 12px 24px;
+      background: #ff4500;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 0 15px #ff4500;
+      transition: 0.3s ease;
+      z-index: 2;
+    }
+
+    .btn:hover {
+      background: #ff6347;
+      box-shadow: 0 0 25px #ff6347;
+      transform: scale(1.05);
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.9rem;
+      color: #aaa;
+      z-index: 2;
+    }
+
+    /* 🔥 Espacios para imágenes decorativas 🔥 */
+    .imagen-random {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 10px;
+      object-fit: cover;
+      opacity: 0.9;
+      box-shadow: 0 0 10px #ff4500;
+      z-index: 1;
+      transition: transform 0.5s ease;
+    }
+
+    .imagen-random:hover {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    /* Posiciones aleatorias (puedes moverlas o agregar más) */
+    .img1 { top: 10%; left: 10%; }
+    .img2 { top: 20%; right: 12%; }
+    .img3 { bottom: 15%; left: 8%; }
+    .img4 { bottom: 20%; right: 10%; }
+  </style>
+</head>
+<body>
+  <!-- Pantalla inicial -->
+  <div class="pantalla" id="pantalla">
+    <h2>Te voy a decir algo...</h2>
+    <div class="opciones">
+      <button class="btn-op" onclick="mostrarInvitacion()">A) Sí</button>
+      <button class="btn-op" onclick="mostrarInvitacion()">B) Opción A</button>
+    </div>
+  </div>
+
+  <!-- Invitación -->
+  <div class="invitacion" id="invitacion">
+    <div class="bg"></div>
+
+    <!-- 🔥 Tus imágenes decorativas 🔥 -->
+    <img src="imagen1.jpg" alt="decoración 1" class="imagen-random img1">
+    <img src="ramdom1.png" alt="decoración 2" class="imagen-random img2">
+    <img src="ramdom2.jpg" alt="decoración 3" class="imagen-random img3">
+   
+
+    <!-- Texto principal -->
+    <h1>🎬 Invitación al Cine 🎬</h1>
+    <p>¿Queres ir a ver <b>Chainsaw Man</b> conmigo?</p>
+    <p class="hora-lugar">📍 Pirateada<br>🗓️ Sábado - 3:00 PM</p>
+
+    <button class="btn">¡Vamos al Cine!</button>
+    <div class="footer">By Emilio 🍿</div>
+  </div>
+
+  <script>
+    function mostrarInvitacion() {
+      const pantalla = document.getElementById("pantalla");
+      const invitacion = document.getElementById("invitacion");
+      pantalla.style.opacity = "0";
+      setTimeout(() => {
+        pantalla.style.display = "none";
+        invitacion.classList.add("mostrar");
+      }, 800);
+    }
+  </script>
+</body>
+</html>
